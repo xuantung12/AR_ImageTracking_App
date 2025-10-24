@@ -9,14 +9,6 @@ using TMPro;
 
 
 
-#if UNITY_EDITOR
-using UnityEditor;
-using UnityEditor.SceneManagement;
-#endif
-
-
-
-
 [ExecuteAlways]
 public class HomeUIBuilder : MonoBehaviour
 {
@@ -325,15 +317,17 @@ public class HomeUIBuilder : MonoBehaviour
         textRt.sizeDelta = Vector2.zero;
 
         TextMeshProUGUI tmp = instructionsText.AddComponent<TextMeshProUGUI>();
-        tmp.text = "ℹ️ Hướng dẫn sử dụng:\n\n" +
-                   "1. Hướng camera vào thẻ bài\n" +
-                   "2. Giữ điện thoại ổn định\n" +
-                   "3. Video sẽ hiển thị tự động\n" +
-                   "4. Xoay điện thoại để xem hiệu ứng AR";
+        // tmp.text = "ℹ️ Hướng dẫn sử dụng:\n\n" +
+        //            "1. Hướng camera vào thẻ bài\n" +
+        //            "2. Giữ điện thoại ổn định\n" +
+        //            "3. Video sẽ hiển thị tự động\n" +
+        //            "4. Xoay điện thoại để xem hiệu ứng AR (ASDASD)";
+        tmp.text = "<sprite name=smile> Hello!";
         tmp.fontSize = 28;
         tmp.color = Color.white;
         tmp.alignment = TextAlignmentOptions.TopLeft;
         tmp.enableWordWrapping = true;
+
 
         Debug.Log("✅ Instructions panel created");
     }
