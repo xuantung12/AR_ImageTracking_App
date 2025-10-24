@@ -7,6 +7,9 @@ using System.Collections;
 /// Builds the Main Menu UI for ar_kid app
 /// Replicates the Flutter HomePage design with Quiz, Stories, and AR buttons
 /// </summary>
+
+
+[ExecuteAlways]
 public class MainMenuUIBuilder : MonoBehaviour
 {
     private Canvas canvas;

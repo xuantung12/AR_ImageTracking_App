@@ -6,8 +6,21 @@ using TMPro;
 /// Builds the Home Screen UI programmatically
 /// Matches the Flutter design with gradient background, icon, title, button, and instructions
 /// </summary>
+
+
+
+#if UNITY_EDITOR
+using UnityEditor;
+using UnityEditor.SceneManagement;
+#endif
+
+
+
+
+[ExecuteAlways]
 public class HomeUIBuilder : MonoBehaviour
 {
+    private bool uiBuilt = false;
     private Canvas canvas;
     private GameObject backgroundPanel;
     private GameObject contentContainer;
