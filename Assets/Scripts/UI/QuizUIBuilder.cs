@@ -8,7 +8,6 @@ using System.Collections;
 /// Replicates the Flutter QuizPage design with questions, answers, and result screen
 /// </summary>
 
-[ExecuteAlways]
 public class QuizUIBuilder : MonoBehaviour
 {
     private Canvas canvas;

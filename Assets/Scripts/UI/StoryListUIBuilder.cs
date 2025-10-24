@@ -8,8 +8,6 @@ using System.Linq;
 /// Builds the Story List UI for ar_kid app
 /// Replicates the Flutter StoryListPage design with category filter and story cards
 /// </summary>
-
-[ExecuteAlways] 
 public class StoryListUIBuilder : MonoBehaviour
 {
     private Canvas canvas;
@@ -26,7 +24,6 @@ public class StoryListUIBuilder : MonoBehaviour
 
     void BuildUI()
     {
-        if (transform.childCount > 0) return;
         // Find or create Canvas
         canvas = FindObjectOfType<Canvas>();
         if (canvas == null)
@@ -360,6 +357,7 @@ public class StoryListUIBuilder : MonoBehaviour
         tmp.color = Color.white;
         tmp.alignment = TextAlignmentOptions.Center;
     }
+
 
     void CreateStoryCard(Story story)
     {

@@ -9,7 +9,9 @@ using System.Collections;
 /// </summary>
 
 
-[ExecuteAlways]
+
+
+
 public class MainMenuUIBuilder : MonoBehaviour
 {
     private Canvas canvas;
@@ -20,6 +22,8 @@ public class MainMenuUIBuilder : MonoBehaviour
         Debug.Log("🏠 MainMenuUIBuilder Started - Building ar_kid Main Menu...");
         BuildUI();
     }
+
+
 
     void BuildUI()
     {

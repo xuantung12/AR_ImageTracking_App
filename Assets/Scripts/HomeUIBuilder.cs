@@ -9,7 +9,6 @@ using TMPro;
 
 
 
-[ExecuteAlways]
 public class HomeUIBuilder : MonoBehaviour
 {
     private bool uiBuilt = false;
@@ -146,6 +145,67 @@ public class HomeUIBuilder : MonoBehaviour
         return Sprite.Create(texture, new Rect(0, 0, 128, 128), new Vector2(0.5f, 0.5f));
     }
 
+    /// <summary>
+    /// Creates a rounded rectangle sprite with specified dimensions and corner radius
+    /// </summary>
+    /// <param name="width">Width of the rectangle in pixels</param>
+    /// <param name="height">Height of the rectangle in pixels</param>
+    /// <param name="cornerRadius">Radius of the rounded corners in pixels</param>
+    /// <returns>Sprite with rounded corners</returns>
+    Sprite CreateRoundedRectSprite(int width, int height, float cornerRadius)
+    {
+        Texture2D texture = new Texture2D(width, height);
+        Color[] pixels = new Color[width * height];
+
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                bool isInside = true;
+
+                // Check if pixel is in corner region
+                float distX = 0;
+                float distY = 0;
+
+                // Top-left corner
+                if (x < cornerRadius && y > height - cornerRadius)
+                {
+                    distX = cornerRadius - x;
+                    distY = y - (height - cornerRadius);
+                    isInside = (distX * distX + distY * distY) <= (cornerRadius * cornerRadius);
+                }
+                // Top-right corner
+                else if (x > width - cornerRadius && y > height - cornerRadius)
+                {
+                    distX = x - (width - cornerRadius);
+                    distY = y - (height - cornerRadius);
+                    isInside = (distX * distX + distY * distY) <= (cornerRadius * cornerRadius);
+                }
+                // Bottom-left corner
+                else if (x < cornerRadius && y < cornerRadius)
+                {
+                    distX = cornerRadius - x;
+                    distY = cornerRadius - y;
+                    isInside = (distX * distX + distY * distY) <= (cornerRadius * cornerRadius);
+                }
+                // Bottom-right corner
+                else if (x > width - cornerRadius && y < cornerRadius)
+                {
+                    distX = x - (width - cornerRadius);
+                    distY = cornerRadius - y;
+                    isInside = (distX * distX + distY * distY) <= (cornerRadius * cornerRadius);
+                }
+
+                pixels[y * width + x] = isInside ? Color.white : Color.clear;
+            }
+        }
+
+        texture.SetPixels(pixels);
+        texture.Apply();
+
+        return Sprite.Create(texture, new Rect(0, 0, width, height), new Vector2(0.5f, 0.5f));
+    }
+
     Texture2D CreateGradientTexture()
     {
         int height = 256;
@@ -267,6 +327,9 @@ public class HomeUIBuilder : MonoBehaviour
 
         Image img = buttonObj.AddComponent<Image>();
         img.color = Color.white;
+        // Apply rounded corners with 15px border radius
+        img.sprite = CreateRoundedRectSprite(500, 120, 15f);
+        img.type = Image.Type.Sliced;
 
         Button btn = buttonObj.AddComponent<Button>();
 
@@ -293,7 +356,7 @@ public class HomeUIBuilder : MonoBehaviour
             SceneTransitionManager.LoadAR();
         });
 
-        Debug.Log("✅ Start button created");
+        Debug.Log("✅ Start button created with rounded corners (15px radius)");
     }
 
     void CreateInstructionsPanel()
@@ -306,6 +369,9 @@ public class HomeUIBuilder : MonoBehaviour
 
         Image img = panel.AddComponent<Image>();
         img.color = new Color(1f, 1f, 1f, 0.15f); // White with 15% opacity
+        // Apply rounded corners with 15px border radius
+        img.sprite = CreateRoundedRectSprite(800, 300, 15f);
+        img.type = Image.Type.Sliced;
 
         // Add instructions text
         GameObject instructionsText = new GameObject("InstructionsText");
@@ -317,18 +383,24 @@ public class HomeUIBuilder : MonoBehaviour
         textRt.sizeDelta = Vector2.zero;
 
         TextMeshProUGUI tmp = instructionsText.AddComponent<TextMeshProUGUI>();
-        // tmp.text = "ℹ️ Hướng dẫn sử dụng:\n\n" +
-        //            "1. Hướng camera vào thẻ bài\n" +
-        //            "2. Giữ điện thoại ổn định\n" +
-        //            "3. Video sẽ hiển thị tự động\n" +
-        //            "4. Xoay điện thoại để xem hiệu ứng AR (ASDASD)";
-        tmp.text = "<sprite name=smile> Hello!";
+
+        // Using TextMeshPro sprite icons in text
+        // To use custom icons from Arlan Trindade pack, you need to:
+        // 1. Create a TMP Sprite Asset from the emoji images
+        // 2. Reference sprites by name or index using <sprite name="iconName"> or <sprite index=0>
+
+        // Example with EmojiOne (built-in TMP sprite asset):
+        tmp.text = "ℹ️ Hướng dẫn sử dụng:\n\n" +
+                   "<sprite=\"EmojiOne\" name=\"Camera\"> 1. Hướng camera vào thẻ bài\n" +
+                   "<sprite=\"EmojiOne\" name=\"Mobile Phone\"> 2. Giữ điện thoại ổn định\n" +
+                   "<sprite=\"EmojiOne\" name=\"Video Camera\"> 3. Video sẽ hiển thị tự động\n" +
+                   "<sprite=\"EmojiOne\" name=\"Clockwise Arrows\"> 4. Xoay điện thoại để xem hiệu ứng AR";
+
         tmp.fontSize = 28;
         tmp.color = Color.white;
         tmp.alignment = TextAlignmentOptions.TopLeft;
         tmp.enableWordWrapping = true;
 
-
-        Debug.Log("✅ Instructions panel created");
+        Debug.Log("✅ Instructions panel created with rounded corners and sprite icons");
     }
 }

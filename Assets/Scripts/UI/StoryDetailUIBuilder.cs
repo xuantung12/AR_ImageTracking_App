@@ -9,7 +9,6 @@ using TMPro;
 
 
 
-[ExecuteAlways]
 public class StoryDetailUIBuilder : MonoBehaviour
 {
     private Canvas canvas;
