@@ -6,6 +6,7 @@ using UnityEngine.XR.ARSubsystems;
 using UnityEngine.Video;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class ARImageTrackingManager : MonoBehaviour
 {
@@ -157,7 +158,31 @@ public class ARImageTrackingManager : MonoBehaviour
         return -1;
     }
 
-    void OnBackButtonClicked()
+    // void OnBackButtonClicked()
+    // {
+    //     if (currentActiveVideo != null)
+    //     {
+    //         VideoPlayer videoPlayer = currentActiveVideo.GetComponentInChildren<VideoPlayer>();
+    //         if (videoPlayer != null)
+    //         {
+    //             videoPlayer.Stop();
+    //         }
+    //         currentActiveVideo.SetActive(false);
+    //         currentActiveVideo = null;
+    //     }
+
+    //     isPlayingVideo = false;
+
+    //     scanFrame.SetActive(true);
+    //     instructionText.gameObject.SetActive(true);
+    //     backButton.gameObject.SetActive(false);
+    // }
+
+
+    /// <summary>
+    /// Called when back button is clicked - Returns to AR Home Scene
+    /// </summary>
+    public void OnBackButtonClicked()
     {
         // Dừng video hiện tại
         if (currentActiveVideo != null)
@@ -173,19 +198,17 @@ public class ARImageTrackingManager : MonoBehaviour
 
         isPlayingVideo = false;
 
-        // Hiện lại UI quét
-        scanFrame.SetActive(true);
-        instructionText.gameObject.SetActive(true);
-        backButton.gameObject.SetActive(false);
+
+        Debug.Log("Back button clicked - Returning to AR Home Scene");
+        SceneTransitionManager.LoadARHome();
     }
 
-    void OnExitButtonClicked()
+    /// <summary>
+    /// Called when exit button is clicked - Returns to HomeScene
+    /// </summary>
+    public void OnExitButtonClicked()
     {
-        // Thoát ứng dụng
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-        Application.Quit();
-#endif
+        Debug.Log("Exit button clicked - Returning to HomeScene");
+        SceneTransitionManager.LoadARHome();
     }
 }
