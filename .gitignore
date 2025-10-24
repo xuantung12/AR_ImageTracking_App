@@ -1,0 +1,10 @@
+Library/ 
+Temp/ 
+Obj/ 
+Logs/ 
+MemoryCaptures/ 
+Build/ 
+*.csproj 
+*.sln 
+*.user 
+*.apk 
