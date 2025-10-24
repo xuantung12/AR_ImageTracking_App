@@ -6,10 +6,26 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/MainMenuScene.unity
+    guid: a6d2db8f5ac41c64a9e9f8cf3a7c4dcf
+  - enabled: 1
+    path: Assets/Scenes/HomeScene.unity
+    guid: 9e629b76be18b4d4199f1582d1de8b89
+  - enabled: 1
+    path: Assets/Scenes/QuizScene.unity
+    guid: 5a4ff0d6e062c4f49bcfa6b040532763
+  - enabled: 1
+    path: Assets/Scenes/StoryListScene.unity
+    guid: 468e505563486b7448f13878dbb35276
+  - enabled: 1
+    path: Assets/Scenes/StoryDetailScene.unity
+    guid: 6d82e1b47517aa64ba3ff094bd4e14cf
+  - enabled: 1
+    path: Assets/Scenes/ARScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: b2353a3ff3ff89e4fbd8fdeeed243847, type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: 9f5a14c45b9d51747b92d0a107eb7ef6, type: 2}
     com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: 4706252519dac4e4f9dd910954fe0538, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 0fbbaacd0af27574da22bf61c27b7746, type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 5ed56a3a7b80c50459a3212000bf6d6a, type: 2}
